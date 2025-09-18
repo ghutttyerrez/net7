@@ -1,0 +1,48 @@
+{
+  "privacy": {
+    "version": "1.0.0",
+    "title": "Política de Privacidade",
+    "intro": "Esta política descreve de forma resumida como coletamos, utilizamos e protegemos dados pessoais dos visitantes e clientes. Conteúdo demonstrativo.",
+    "sections": [
+      { "id": "dados", "title": "1. Dados Coletados", "body": "Coletamos dados fornecidos diretamente (ex.: nome, e-mail, telefone) e dados técnicos mínimos para funcionamento e segurança (logs essenciais). Não vendemos dados." },
+      { "id": "finalidades", "title": "2. Finalidades", "list": [
+        "Prestação e manutenção do serviço contratado.",
+        "Suporte técnico e atendimento.",
+        "Comunicações transacionais relevantes.",
+        "Melhoria de estabilidade, segurança e performance."
+      ]},
+      { "id": "direitos", "title": "3. Direitos do Titular", "body": "Você pode solicitar acesso, correção, portabilidade ou exclusão dos seus dados, respeitando obrigações legais de retenção." },
+      { "id": "seguranca", "title": "4. Segurança", "body": "Adotamos controles técnicos e organizacionais razoáveis. Nenhuma transmissão é 100% segura, mas buscamos reduzir riscos." },
+      { "id": "retencao", "title": "5. Retenção", "body": "Mantemos dados pelo tempo necessário às finalidades ou exigências legais/regulatórias." }
+    ],
+    "disclaimer": "Documento ilustrativo. Versão final requer revisão jurídica (LGPD)."
+  },
+  "terms": {
+    "version": "1.0.0",
+    "title": "Termos de Uso",
+    "intro": "Estes termos regulam a utilização dos serviços de conectividade. Texto demonstrativo.",
+    "sections": [
+      { "id": "servico", "title": "1. Serviço", "body": "Fornecemos acesso à internet em regime de melhor esforço conforme plano contratado." },
+      { "id": "uso", "title": "2. Uso Aceitável", "body": "É vedado uso para atividades ilícitas, ofensivas, infração de direitos autorais ou intrusões." },
+      { "id": "responsabilidades", "title": "3. Responsabilidades", "body": "Usuário deve proteger dispositivos e credenciais; não respondemos por malware no equipamento do cliente." },
+      { "id": "suspensao", "title": "4. Suspensão", "body": "Serviço pode ser suspenso para manutenção ou violação de termos, notificando quando possível." },
+      { "id": "alteracoes", "title": "5. Alterações", "body": "Atualizações podem ocorrer; continuação do uso implica concordância com versão vigente." }
+    ],
+    "disclaimer": "Documento ilustrativo. Versão final depende de revisão jurídica e regulamentações (Anatel / LGPD)."
+  },
+  "cookies": {
+    "version": "1.0.0",
+    "title": "Cookies & Tecnologias",
+    "intro": "Explicamos de forma simples quais cookies e tecnologias similares podemos utilizar.",
+    "sections": [
+      { "id": "tipos", "title": "1. Tipos de Cookies", "list": [
+        "Essenciais: necessários para funcionalidades básicas e segurança.",
+        "Desempenho: ajudam a entender uso agregado.",
+        "Funcionais: lembram preferências como tema."
+      ]},
+      { "id": "controle", "title": "2. Controle", "body": "Você pode limpar ou bloquear cookies no navegador. Desativar essenciais pode afetar funcionalidades." },
+      { "id": "analytics", "title": "3. Analytics Simplificado", "body": "Utilizamos solução de analytics leve interna sem identificar usuários individualmente." }
+    ],
+    "disclaimer": "Documento ilustrativo. Política real pode incluir detalhamento de terceiros e consentimento explícito."
+  }
+}

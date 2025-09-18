@@ -1,0 +1,48 @@
+{
+  "privacy": {
+    "version": "1.0.0",
+    "title": "Privacy Policy",
+    "intro": "This policy briefly describes how we collect, use and protect personal data from visitors and customers. Demonstration content.",
+    "sections": [
+      { "id": "data", "title": "1. Data Collected", "body": "We collect data you provide directly (e.g. name, email, phone) plus minimal technical logs required for operation and security. We do not sell data." },
+      { "id": "purposes", "title": "2. Purposes", "list": [
+        "Provision and maintenance of the contracted service.",
+        "Technical support and customer service.",
+        "Transactional and relevant account communications.",
+        "Improving stability, security and performance."
+      ]},
+      { "id": "rights", "title": "3. Data Subject Rights", "body": "You may request access, correction, portability or deletion of your data subject to legal retention obligations." },
+      { "id": "security", "title": "4. Security", "body": "We adopt reasonable technical and organizational controls. No transmission is 100% secure but we strive to reduce risks." },
+      { "id": "retention", "title": "5. Retention", "body": "Data is kept only as long as needed for stated purposes or legal requirements." }
+    ],
+    "disclaimer": "Demonstration document. Final version requires legal review (LGPD/GDPR)."
+  },
+  "terms": {
+    "version": "1.0.0",
+    "title": "Terms of Service",
+    "intro": "These terms govern the use of our connectivity services. Demonstration text.",
+    "sections": [
+      { "id": "service", "title": "1. Service", "body": "We provide internet access on a best-effort basis according to the subscribed plan." },
+      { "id": "acceptable", "title": "2. Acceptable Use", "body": "Use for unlawful, offensive, copyright infringing or intrusion activities is forbidden." },
+      { "id": "responsibility", "title": "3. Responsibilities", "body": "User must protect devices and credentials; we are not liable for malware on client equipment." },
+      { "id": "suspension", "title": "4. Suspension", "body": "Service may be temporarily suspended for maintenance or policy violation with notice when possible." },
+      { "id": "changes", "title": "5. Changes", "body": "Updates may occur; continued use means acceptance of the current version." }
+    ],
+    "disclaimer": "Demonstration only. Final terms depend on legal and regulatory review (Anatel / LGPD)."
+  },
+  "cookies": {
+    "version": "1.0.0",
+    "title": "Cookies & Technologies",
+    "intro": "We explain in simple terms which cookies and similar technologies we may use.",
+    "sections": [
+      { "id": "types", "title": "1. Types of Cookies", "list": [
+        "Essential: required for basic functionality and security.",
+        "Performance: help us understand aggregated usage.",
+        "Functional: remember preferences like theme."
+      ]},
+      { "id": "control", "title": "2. Control", "body": "You can clear or block cookies in your browser. Disabling essential ones may impact functionality." },
+      { "id": "analytics", "title": "3. Lightweight Analytics", "body": "We use a lightweight internal analytics solution without identifying users individually." }
+    ],
+    "disclaimer": "Demonstration only. Real policy may include third-party details and explicit consent mechanisms."
+  }
+}
