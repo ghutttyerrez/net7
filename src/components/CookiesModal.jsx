@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { trackEvent } from '../utils/analytics'
+import ModalPortal from './ModalPortal'
 import { generateLegalPdf } from '../utils/legalPdf'
 import { useLocale } from '../context/LocaleContext'
 import { loadLegalContent } from '../utils/legalContent'
@@ -32,6 +33,7 @@ export default function CookiesModal({ open, onClose }) {
   if (!open) return null
   if (!content) return null
   return (
+    <ModalPortal id="cookies-modal-portal">
     <div className="fixed inset-0 z-[85] flex items-start justify-center p-4 md:p-8 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="cookies-modal-title">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={()=>{ trackEvent('cookies_close_backdrop'); onClose() }} />
   <div ref={dialogRef} className="relative w-full max-w-2xl glass rounded-2xl p-5 md:p-8 border border-black/10 dark:border-white/10 shadow-xl space-y-6 animate-modal-in max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain" tabIndex={-1}>
@@ -59,5 +61,6 @@ export default function CookiesModal({ open, onClose }) {
         <p className="text-[11px] text-neutral-500 dark:text-brand-light/40 pt-4 border-t border-black/10 dark:border-white/10">{content.disclaimer}</p>
       </div>
     </div>
+    </ModalPortal>
   )
 }

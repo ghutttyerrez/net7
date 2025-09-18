@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { trackEvent } from '../utils/analytics'
+import ModalPortal from './ModalPortal'
 import { WHATSAPP_BASE_URL } from '../config/whatsapp'
 import { useModalA11y } from '../hooks/useModalA11y'
 
@@ -40,7 +41,8 @@ export default function SupportHoursModal({ open, onClose }) {
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-[75] flex items-start justify-center p-4 md:p-8 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-hours-title" aria-describedby="modal-hours-desc">
+    <ModalPortal id="hours-modal-portal">
+    <div className="fixed inset-0 z-[90] flex items-start justify-center p-4 md:p-8 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-hours-title" aria-describedby="modal-hours-desc">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => { trackEvent('hours_close_backdrop'); onClose() }} />
   <div ref={dialogRef} className="relative w-full max-w-md glass rounded-2xl p-5 md:p-8 border border-black/10 dark:border-white/10 shadow-xl space-y-5 animate-modal-in max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain" tabIndex={-1}>
         <span ref={liveRef} className="sr-only" aria-live="polite" />
@@ -88,5 +90,6 @@ export default function SupportHoursModal({ open, onClose }) {
         </div>
       </div>
     </div>
+    </ModalPortal>
   )
 }
