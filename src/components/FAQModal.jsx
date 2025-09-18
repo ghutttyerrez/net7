@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState, useMemo } from 'react'
+import { useRef, useState, useMemo } from 'react'
 import { trackEvent } from '../utils/analytics'
+import { useModalA11y } from '../hooks/useModalA11y'
 
 const rawFaq = [
   {
@@ -98,25 +99,8 @@ export default function FAQModal({ open, onClose }) {
       .filter(cat => cat.items.length > 0)
   }, [query])
 
-  // Fechar com ESC
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e) => { if (e.key === 'Escape') onClose() }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [open, onClose])
-
-  // Foco inicial e trap simples
-  useEffect(() => {
-    if (open) {
-      requestAnimationFrame(() => {
-        firstFocusable.current?.focus()
-      })
-      const prevOverflow = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
-      return () => { document.body.style.overflow = prevOverflow }
-    }
-  }, [open])
+  // Acessibilidade unificada (focus trap, ESC, scroll lock)
+  useModalA11y({ open, onClose, containerRef, firstFocusRef: firstFocusable, escEventName: 'faq_close_esc' })
 
   const toggleItem = (catIdx, itemIdx, question) => {
     const key = `${catIdx}-${itemIdx}`
@@ -133,19 +117,19 @@ export default function FAQModal({ open, onClose }) {
   return (
     <div className="fixed inset-0 z-[70] flex items-start justify-center p-4 md:p-8 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="faq-modal-title">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-      <div ref={containerRef} className="relative w-full max-w-4xl bg-white dark:bg-[#0d1218] border border-black/10 dark:border-white/10 rounded-2xl shadow-xl p-6 md:p-8 space-y-6 animate-fade-in">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div ref={containerRef} className="relative w-full max-w-4xl bg-white dark:bg-[#0d1218] border border-black/10 dark:border-white/10 rounded-2xl shadow-xl p-5 md:p-8 space-y-6 animate-fade-in focus:outline-none">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <h2 id="faq-modal-title" className="text-2xl font-bold text-neutral-800 dark:text-brand-light tracking-tight">Perguntas Frequentes</h2>
-          <div className="flex gap-3 w-full md:w-auto">
-              <input
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+            <input
               ref={firstFocusable}
               value={query}
               onChange={e=>{ setQuery(e.target.value); trackEvent('faq_search_change', { value: e.target.value }) }}
               placeholder="Buscar..."
-              className="flex-1 md:w-64 rounded-md bg-neutral-100 dark:bg-black/40 border border-black/10 dark:border-white/10 px-3 py-2 text-sm outline-none focus:border-brand-blue dark:focus:border-brand-lime focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-lime"
+              className="w-full sm:flex-1 md:w-64 rounded-md bg-neutral-100 dark:bg-black/40 border border-black/10 dark:border-white/10 px-3 py-2 text-sm outline-none focus:border-brand-blue dark:focus:border-brand-lime focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-lime"
               aria-label="Buscar nas perguntas"
             />
-            <button onClick={onClose} className="btn-outline px-4">Fechar</button>
+            <button onClick={onClose} className="btn-outline px-4 w-full sm:w-auto">Fechar</button>
           </div>
         </div>
         <div className="space-y-8">

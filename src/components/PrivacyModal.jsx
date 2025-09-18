@@ -36,7 +36,7 @@ export default function PrivacyModal({ open, onClose }) {
   return (
     <div className="fixed inset-0 z-[85] flex items-start justify-center p-4 md:p-8 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={()=>{ trackEvent('privacy_close_backdrop'); onClose() }} />
-      <div ref={dialogRef} className="relative w-full max-w-3xl glass rounded-2xl p-6 md:p-8 border border-black/10 dark:border-white/10 shadow-xl space-y-6 animate-modal-in" tabIndex={-1}>
+  <div ref={dialogRef} className="relative w-full max-w-3xl glass rounded-2xl p-5 md:p-8 border border-black/10 dark:border-white/10 shadow-xl space-y-6 animate-modal-in max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain" tabIndex={-1}>
         <div className="flex items-start justify-between gap-4">
           <h2 id="privacy-modal-title" ref={firstRef} className="text-xl font-semibold text-neutral-800 dark:text-brand-light tracking-tight">{content.title} <span className="text-xs font-normal text-neutral-400 dark:text-brand-light/40">v{content.version}</span></h2>
           <div className="flex gap-2">

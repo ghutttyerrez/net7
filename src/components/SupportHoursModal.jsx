@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { trackEvent } from '../utils/analytics'
 import { WHATSAPP_BASE_URL } from '../config/whatsapp'
+import { useModalA11y } from '../hooks/useModalA11y'
 
 const HOLIDAYS = [
   { date: '01/01', name: 'Confraternização Universal', note: 'Atendimento sob escala reduzida' },
@@ -20,30 +21,7 @@ export default function SupportHoursModal({ open, onClose }) {
   const [copied, setCopied] = useState(false)
   const liveRef = useRef(null)
 
-  useEffect(() => {
-    if (!open) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    requestAnimationFrame(() => firstRef.current?.focus())
-  const onKey = (e) => { if (e.key === 'Escape') { trackEvent('hours_close_esc'); onClose() } }
-  document.addEventListener('keydown', onKey)
-    // Focus trap
-    const trap = (e) => {
-      if (e.key !== 'Tab') return
-      const focusable = dialogRef.current?.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])') || []
-      if (!focusable.length) return
-      const list = Array.from(focusable).filter(el => !el.hasAttribute('disabled'))
-      const first = list[0]
-      const last = list[list.length - 1]
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault(); last.focus()
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault(); first.focus()
-      }
-    }
-    document.addEventListener('keydown', trap)
-    return () => { document.body.style.overflow = prev; document.removeEventListener('keydown', onKey) }
-  }, [open, onClose])
+  useModalA11y({ open, onClose: ()=>{ trackEvent('hours_close_esc'); onClose() }, containerRef: dialogRef, firstFocusRef: firstRef, escEventName: 'hours_close_esc' })
 
   const copyHours = async () => {
     const text = `Horários de Atendimento Net7\nSeg a Sex: 08:00 - 18:00\nSáb e Dom: 08:00 - 17:00 (Plantão)`
@@ -64,7 +42,7 @@ export default function SupportHoursModal({ open, onClose }) {
   return (
     <div className="fixed inset-0 z-[75] flex items-start justify-center p-4 md:p-8 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-hours-title" aria-describedby="modal-hours-desc">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => { trackEvent('hours_close_backdrop'); onClose() }} />
-      <div ref={dialogRef} className="relative w-full max-w-md glass rounded-2xl p-6 md:p-8 border border-black/10 dark:border-white/10 shadow-xl space-y-5 animate-modal-in" tabIndex={-1}>
+  <div ref={dialogRef} className="relative w-full max-w-md glass rounded-2xl p-5 md:p-8 border border-black/10 dark:border-white/10 shadow-xl space-y-5 animate-modal-in max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain" tabIndex={-1}>
         <span ref={liveRef} className="sr-only" aria-live="polite" />
         <div className="flex items-start justify-between gap-4">
           <h2 id="modal-hours-title" className="text-lg font-semibold text-neutral-800 dark:text-brand-light" ref={firstRef}>Horários de Atendimento</h2>

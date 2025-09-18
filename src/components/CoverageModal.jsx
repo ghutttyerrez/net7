@@ -1,22 +1,13 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { trackEvent } from '../utils/analytics'
 import { WHATSAPP_BASE_URL } from '../config/whatsapp'
+import { useModalA11y } from '../hooks/useModalA11y'
 
 export default function CoverageModal({ open, onClose }) {
   const dialogRef = useRef(null)
   const firstFocusRef = useRef(null)
 
-  useEffect(() => {
-    if (!open) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    requestAnimationFrame(() => {
-      firstFocusRef.current?.focus()
-    })
-    const onKey = (e) => { if (e.key === 'Escape') { trackEvent('coverage_close_esc'); onClose() } }
-    document.addEventListener('keydown', onKey)
-    return () => { document.body.style.overflow = prev; document.removeEventListener('keydown', onKey) }
-  }, [open, onClose])
+  useModalA11y({ open, onClose: ()=>{ trackEvent('coverage_close_esc'); onClose() }, containerRef: dialogRef, firstFocusRef: firstFocusRef, escEventName: 'coverage_close_esc' })
 
   if (!open) return null
 
