@@ -42,8 +42,7 @@ export default function ContactSection() {
               </div>
             </fieldset>
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <button className="btn-primary justify-center flex-1" type="submit">Enviar</button>
-              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" onClick={()=>trackEvent('contact_whatsapp_click')} className="btn-outline justify-center flex-1">WhatsApp</a>
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" onClick={()=>trackEvent('contact_whatsapp_click')} className="btn-primary justify-center w-full">WhatsApp</a>
             </div>
             <p className="text-xs text-neutral-500 dark:text-brand-light/50">Demonstrativo. Dados não são enviados. O botão WhatsApp monta a mensagem automaticamente.</p>
             </div>
@@ -68,16 +67,22 @@ export default function ContactSection() {
             </div>
           </div>
           {/* Card alto de suporte */}
-          <div data-reveal data-reveal-delay="400" className="group relative glass rounded-xl p-6 flex flex-col gap-3 h-full lg:col-span-4 xl:col-span-3 lg:row-span-2 overflow-hidden border border-black/10 dark:border-white/10 transition-all hover:shadow-lg hover:-translate-y-1">
+          <div data-reveal data-reveal-delay="400" className="group relative glass rounded-xl p-5 sm:p-6 flex flex-col gap-3 h-full lg:col-span-4 xl:col-span-3 lg:row-span-2 overflow-hidden border border-black/10 dark:border-white/10 transition-all hover:shadow-lg hover:-translate-y-1">
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-brand-lime/10 to-brand-blue/10" />
             <div className="relative flex flex-col gap-3 flex-1">
             <h3 className="text-lg font-semibold text-brand-blue dark:text-brand-lime">Suporte</h3>
-            <p className="text-sm text-neutral-600 dark:text-brand-light/70 flex-1">Clientes têm acesso a suporte dedicado com baixa fila. Utilize a Área do Cliente para abrir chamados, acompanhar instalações e acessar 2ª via de faturas.</p>
-            <a href="#" className="btn-outline justify-center whitespace-nowrap relative">Área do Cliente</a>
-            <div className="mt-4 text-[11px] text-neutral-500 dark:text-brand-light/40 leading-relaxed">
-              <p><strong>Tempo médio de resposta:</strong> &lt; 5 min horário comercial.</p>
-              <p className="mt-1">Plantão emergencial disponível para indisponibilidades críticas.</p>
-            </div>
+            <p className="text-sm text-neutral-600 dark:text-brand-light/70 flex-1 leading-relaxed">Clientes têm acesso a suporte dedicado com baixa fila. Utilize a Área do Cliente para abrir chamados, acompanhar instalações e acessar 2ª via de faturas.</p>
+            <a href="#" className="btn-outline justify-center whitespace-nowrap relative text-sm py-2">Área do Cliente</a>
+            <details className="mt-2 text-[11px] text-neutral-500 dark:text-brand-light/40 leading-relaxed select-none">
+              <summary className="cursor-pointer list-none marker:hidden flex items-center gap-1 text-neutral-500 dark:text-brand-light/50 hover:text-neutral-700 dark:hover:text-brand-light/70 transition-colors">
+                <span>Mais detalhes</span>
+                <span className="text-[9px] opacity-60">(tempo de resposta)</span>
+              </summary>
+              <div className="mt-2 space-y-1">
+                <p><strong>Tempo médio de resposta:</strong> &lt; 5 min horário comercial.</p>
+                <p>Plantão emergencial para indisponibilidades críticas.</p>
+              </div>
+            </details>
             </div>
           </div>
         </div>

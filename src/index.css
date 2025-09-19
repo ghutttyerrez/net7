@@ -21,10 +21,10 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-md bg-brand-blue text-white font-medium px-6 py-3 shadow-sm hover:shadow-md hover:bg-brand-blue/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black transition-colors dark:bg-brand-lime dark:text-brand-black dark:hover:bg-brand-lime/90;
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand-blue text-white font-medium px-6 py-3 shadow-sm hover:shadow-md hover:bg-brand-blue/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black transition-colors dark:bg-brand-lime dark:text-brand-black dark:hover:bg-brand-lime/90;
   }
   .btn-outline {
-    @apply inline-flex items-center gap-2 rounded-md border border-brand-blue text-brand-blue font-medium px-6 py-3 hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black transition-colors dark:border-brand-lime dark:text-brand-lime dark:hover:bg-brand-lime dark:hover:text-brand-black;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-brand-blue text-brand-blue font-medium px-6 py-3 hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black transition-colors dark:border-brand-lime dark:text-brand-lime dark:hover:bg-brand-lime dark:hover:text-brand-black;
   }
   .card-plan {
     @apply relative flex flex-col rounded-xl border border-black/10 dark:border-white/5 bg-white dark:bg-white/5 p-6 shadow-sm hover:shadow-lg transition-shadow overflow-hidden;

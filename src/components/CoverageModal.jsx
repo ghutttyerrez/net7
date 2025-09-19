@@ -12,7 +12,7 @@ export default function CoverageModal({ open, onClose }) {
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-start justify-center p-4 md:p-8 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="coverage-modal-title">
+    <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 md:p-8 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="coverage-modal-title">
   <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={()=>{ trackEvent('coverage_close_backdrop'); onClose() }} />
       <div ref={dialogRef} className="relative w-full max-w-lg glass rounded-2xl p-6 md:p-8 border border-black/10 dark:border-white/10 space-y-6">
         <div className="flex items-start justify-between gap-4">
