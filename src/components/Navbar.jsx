@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useLocale } from '../context/LocaleContext'
 import InstallPWAButton from './InstallPWAButton'
 
 const navLinks = [
@@ -13,7 +12,6 @@ const navLinks = [
 export default function Navbar({ onOpenFAQ }) {
   const [open, setOpen] = useState(false)
   const [theme, setTheme] = useState('dark')
-  const { locale, setLocale } = useLocale()
 
   useEffect(() => {
     const stored = localStorage.getItem('theme')
@@ -42,7 +40,7 @@ export default function Navbar({ onOpenFAQ }) {
 
   const headerCls = theme === 'dark'
     ? 'backdrop-blur supports-[backdrop-filter]:bg-black/40 bg-black/60 border-white/10'
-    : 'backdrop-blur bg-white/90 border-black/10'
+    : 'backdrop-blur border-transparent bg-transparent'
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 border-b ${headerCls}`}>
@@ -65,10 +63,18 @@ export default function Navbar({ onOpenFAQ }) {
               {l.label}
             </a>
           ))}
-          <select aria-label="Idioma" value={locale} onChange={e=>setLocale(e.target.value)} className={theme==='dark' ? 'text-xs bg-black/40 border border-white/10 rounded px-2 py-1 text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-lime' : 'text-xs bg-white/60 border border-black/10 rounded px-2 py-1 text-neutral-700 focus:outline-none focus:ring-2 focus:ring-brand-blue'}>
-            <option value="pt-BR">PT-BR</option>
-            <option value="en-US">EN-US</option>
-          </select>
+          <a
+            href="https://sistema.net7.com.br/central-assinante/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={
+              theme === 'dark'
+                ? 'text-sm font-medium text-brand-light/80 link-hover'
+                : 'text-sm font-medium text-neutral-800 link-hover'
+            }
+          >
+            Área do Cliente
+          </a>
           <InstallPWAButton />
           <button
             type="button"
@@ -106,7 +112,7 @@ export default function Navbar({ onOpenFAQ }) {
           <button
             onClick={toggleTheme}
             aria-label="Alternar tema"
-            className={`p-2 rounded-md border transition-colors ${
+            className={`w-9 h-9 inline-flex items-center justify-center rounded-md border transition-colors ${
               theme === 'dark'
                 ? 'border-white/10 hover:border-brand-lime text-brand-light/80 hover:text-brand-lime'
                 : 'border-black/10 hover:border-brand-blue text-brand-blue hover:text-brand-blue/80'
@@ -116,7 +122,7 @@ export default function Navbar({ onOpenFAQ }) {
           </button>
         </div>
         <div className="md:hidden flex items-center gap-2">
-          <button onClick={toggleTheme} aria-label="Alternar tema" className={`p-2 rounded-md border transition-colors ${theme==='dark' ? 'border-white/10 hover:border-brand-lime text-brand-light/80 hover:text-brand-lime' : 'border-black/10 hover:border-brand-blue text-brand-blue hover:text-brand-blue/80'}`}>
+          <button onClick={toggleTheme} aria-label="Alternar tema" className={`w-9 h-9 inline-flex items-center justify-center rounded-md border transition-colors ${theme==='dark' ? 'border-white/10 hover:border-brand-lime text-brand-light/80 hover:text-brand-lime' : 'border-black/10 hover:border-brand-blue text-brand-blue hover:text-brand-blue/80'}`}>
             {theme === 'dark' ? '🌙' : '☀️'}
           </button>
           <button aria-label="Abrir menu" aria-expanded={open} onClick={() => setOpen(o=>!o)} className={`p-2 rounded-md border transition-colors ${theme==='dark' ? 'border-white/10 text-brand-light/80 hover:text-brand-lime hover:border-brand-lime' : 'border-black/10 text-neutral-600 hover:text-brand-blue hover:border-brand-blue'}` }>
@@ -134,10 +140,15 @@ export default function Navbar({ onOpenFAQ }) {
                 {l.label}
               </a>
             ))}
-            <select aria-label="Idioma" value={locale} onChange={e=>setLocale(e.target.value)} className={theme==='dark' ? 'text-sm bg-black/40 border border-white/10 rounded px-2 py-1 text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-lime' : 'text-sm bg-white/60 border border-black/10 rounded px-2 py-1 text-neutral-700 focus:outline-none focus:ring-2 focus:ring-brand-blue'}>
-              <option value="pt-BR">PT-BR</option>
-              <option value="en-US">EN-US</option>
-            </select>
+            <a
+              href="https://sistema.net7.com.br/central-assinante/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={()=>setOpen(false)}
+              className={theme==='dark' ? 'text-base font-medium text-brand-light/90 link-hover' : 'text-base font-medium text-neutral-800 link-hover'}
+            >
+              Área do Cliente
+            </a>
             <InstallPWAButton className="self-start" />
             <button onClick={()=>{ setOpen(false); onOpenFAQ?.() }} className={theme==='dark' ? 'text-base font-medium text-brand-light/90 link-hover text-left' : 'text-base font-medium text-neutral-800 link-hover text-left'}>
               FAQ

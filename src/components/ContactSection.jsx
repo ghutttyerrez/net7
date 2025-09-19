@@ -72,7 +72,7 @@ export default function ContactSection() {
             <div className="relative flex flex-col gap-3 flex-1">
             <h3 className="text-lg font-semibold text-brand-blue dark:text-brand-lime">Suporte</h3>
             <p className="text-sm text-neutral-600 dark:text-brand-light/70 flex-1 leading-relaxed">Clientes têm acesso a suporte dedicado com baixa fila. Utilize a Área do Cliente para abrir chamados, acompanhar instalações e acessar 2ª via de faturas.</p>
-            <a href="#" className="btn-outline justify-center whitespace-nowrap relative text-sm py-2">Área do Cliente</a>
+            <a href="https://sistema.net7.com.br/central-assinante/" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center whitespace-nowrap relative text-sm py-2">Área do Cliente</a>
             <details className="mt-2 text-[11px] text-neutral-500 dark:text-brand-light/40 leading-relaxed select-none">
               <summary className="cursor-pointer list-none marker:hidden flex items-center gap-1 text-neutral-500 dark:text-brand-light/50 hover:text-neutral-700 dark:hover:text-brand-light/70 transition-colors">
                 <span>Mais detalhes</span>
