@@ -2,32 +2,20 @@ import { useState, useEffect, useLayoutEffect } from 'react'
 
 export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Detecta tema inicial imediatamente
-    if (typeof window !== 'undefined') {
-      return document.documentElement.classList.contains('dark')
-    }
-    return false
-  })
+  const [isDarkMode, setIsDarkMode] = useState(false)
   
-  // Use useLayoutEffect para detectar tema antes do primeiro paint
+  // Detecta tema inicial e monitora mudanças
   useLayoutEffect(() => {
-    const darkMode = document.documentElement.classList.contains('dark')
-    setIsDarkMode(darkMode)
-  }, [])
-  
-  // Monitora mudanças de tema
-  useEffect(() => {
     const checkTheme = () => {
       const darkMode = document.documentElement.classList.contains('dark')
       setIsDarkMode(darkMode)
     }
     
-    // Monitora mudanças na classe do html
-    const observer = new MutationObserver(() => {
-      checkTheme()
-    })
+    // Detecta tema inicial
+    checkTheme()
     
+    // Monitora mudanças na classe do html
+    const observer = new MutationObserver(checkTheme)
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class']

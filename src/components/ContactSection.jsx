@@ -7,13 +7,20 @@ export default function ContactSection() {
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [mensagem, setMensagem] = useState('')
+  const [coverageOpen, setCoverageOpen] = useState(false)
 
   const whatsappHref = useMemo(() => {
     const msg = `Olá! Gostaria de entrar em contato.%0A%0ANome: ${nome || '(não informado)'}%0AEmail: ${email || '(não informado)'}%0AMensagem: ${mensagem || '(vazia)'}%0A%0AOrigem: Site Net7`;
-  return `${WHATSAPP_BASE_URL}?text=${msg}`
+    return `${WHATSAPP_BASE_URL}?text=${msg}`
   }, [nome, email, mensagem])
 
-  const [coverageOpen, setCoverageOpen] = useState(false)
+  // Classes CSS reutilizáveis
+  const cardBaseClass = "group relative glass rounded-xl p-6 flex flex-col gap-3 h-full overflow-hidden border border-black/10 dark:border-white/10 transition-all hover:shadow-lg hover:-translate-y-1"
+  const overlayClass = "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-brand-lime/10 to-brand-blue/10"
+  const cardContentClass = "relative flex flex-col gap-3 flex-1"
+  const cardTitleClass = "text-lg font-semibold text-brand-blue dark:text-brand-lime"
+  const cardTextClass = "text-sm text-neutral-600 dark:text-brand-light/70 flex-1"
+  const inputClass = "w-full rounded-md bg-neutral-100 dark:bg-black/40 border border-black/10 dark:border-white/10 focus:border-brand-blue dark:focus:border-brand-lime focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-lime px-3 py-2 outline-none text-sm text-neutral-700 dark:text-brand-light"
 
   return (
   <section id="contato" className="py-24" data-reveal data-reveal-delay="0">
@@ -30,15 +37,15 @@ export default function ContactSection() {
               <legend className="text-sm font-semibold text-neutral-700 dark:text-brand-light/80 mb-1">Seus dados</legend>
               <div>
                 <label className="block text-sm font-medium mb-1">Nome</label>
-                <input value={nome} onChange={e=>setNome(e.target.value)} required type="text" className="w-full rounded-md bg-neutral-100 dark:bg-black/40 border border-black/10 dark:border-white/10 focus:border-brand-blue dark:focus:border-brand-lime focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-lime px-3 py-2 outline-none text-sm text-neutral-700 dark:text-brand-light" />
+                <input value={nome} onChange={e=>setNome(e.target.value)} required type="text" className={inputClass} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Email</label>
-                <input value={email} onChange={e=>setEmail(e.target.value)} required type="email" className="w-full rounded-md bg-neutral-100 dark:bg-black/40 border border-black/10 dark:border-white/10 focus:border-brand-blue dark:focus:border-brand-lime focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-lime px-3 py-2 outline-none text-sm text-neutral-700 dark:text-brand-light" />
+                <input value={email} onChange={e=>setEmail(e.target.value)} required type="email" className={inputClass} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Mensagem</label>
-                <textarea value={mensagem} onChange={e=>setMensagem(e.target.value)} rows={4} className="w-full resize-none rounded-md bg-neutral-100 dark:bg-black/40 border border-black/10 dark:border-white/10 focus:border-brand-blue dark:focus:border-brand-lime focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-lime px-3 py-2 outline-none text-sm text-neutral-700 dark:text-brand-light" />
+                <textarea value={mensagem} onChange={e=>setMensagem(e.target.value)} rows={4} className={`${inputClass} resize-none`} />
               </div>
             </fieldset>
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -49,29 +56,29 @@ export default function ContactSection() {
           </form>
           {/* Coluna com dois cards empilhados */}
           <div className="flex flex-col gap-6 lg:col-span-3 xl:col-span-3 lg:row-span-2 order-last lg:order-none" data-reveal data-reveal-delay="300">
-            <div className="group relative glass rounded-xl p-6 flex flex-col gap-3 h-full overflow-hidden border border-black/10 dark:border-white/10 transition-all hover:shadow-lg hover:-translate-y-1">
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-brand-lime/10 to-brand-blue/10" />
-              <div className="relative flex flex-col gap-3 flex-1">
-              <h3 className="text-lg font-semibold text-brand-blue dark:text-brand-lime">Atendimento rápido</h3>
-              <p className="text-sm text-neutral-600 dark:text-brand-light/70 flex-1">Fale direto com nosso time via WhatsApp e acelere sua contratação.</p>
+            <div className={cardBaseClass}>
+              <div className={overlayClass} />
+              <div className={cardContentClass}>
+              <h3 className={cardTitleClass}>Atendimento rápido</h3>
+              <p className={cardTextClass}>Fale direto com nosso time via WhatsApp e acelere sua contratação.</p>
               <a href={WHATSAPP_BASE_URL} target="_blank" onClick={()=>trackEvent('quick_whatsapp_click')} className="btn-outline justify-center relative">WhatsApp</a>
               </div>
             </div>
-            <div className="group relative glass rounded-xl p-6 flex flex-col gap-3 h-full overflow-hidden border border-black/10 dark:border-white/10 transition-all hover:shadow-lg hover:-translate-y-1">
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-brand-lime/10 to-brand-blue/10" />
-              <div className="relative flex flex-col gap-3 flex-1">
-              <h3 className="text-lg font-semibold text-brand-blue dark:text-brand-lime">Cobertura</h3>
-              <p className="text-sm text-neutral-600 dark:text-brand-light/70 flex-1">Consulte disponibilidade da nossa fibra no seu endereço.</p>
+            <div className={cardBaseClass}>
+              <div className={overlayClass} />
+              <div className={cardContentClass}>
+              <h3 className={cardTitleClass}>Cobertura</h3>
+              <p className={cardTextClass}>Consulte disponibilidade da nossa fibra no seu endereço.</p>
               <button type="button" onClick={()=>{ setCoverageOpen(true); trackEvent('coverage_open') }} className="btn-primary justify-center relative">Verificar Cobertura</button>
               </div>
             </div>
           </div>
           {/* Card alto de suporte */}
-          <div data-reveal data-reveal-delay="400" className="group relative glass rounded-xl p-5 sm:p-6 flex flex-col gap-3 h-full lg:col-span-4 xl:col-span-3 lg:row-span-2 overflow-hidden border border-black/10 dark:border-white/10 transition-all hover:shadow-lg hover:-translate-y-1">
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-brand-lime/10 to-brand-blue/10" />
-            <div className="relative flex flex-col gap-3 flex-1">
-            <h3 className="text-lg font-semibold text-brand-blue dark:text-brand-lime">Suporte</h3>
-            <p className="text-sm text-neutral-600 dark:text-brand-light/70 flex-1 leading-relaxed">Clientes têm acesso a suporte dedicado com baixa fila. Utilize a Área do Cliente para abrir chamados, acompanhar instalações e acessar 2ª via de faturas.</p>
+          <div data-reveal data-reveal-delay="400" className={`${cardBaseClass} lg:col-span-4 xl:col-span-3 lg:row-span-2 p-5 sm:p-6`}>
+            <div className={overlayClass} />
+            <div className={cardContentClass}>
+            <h3 className={cardTitleClass}>Suporte</h3>
+            <p className={`${cardTextClass} leading-relaxed`}>Clientes têm acesso a suporte dedicado com baixa fila. Utilize a Área do Cliente para abrir chamados, acompanhar instalações e acessar 2ª via de faturas.</p>
             <a href="https://sistema.net7.com.br/central-assinante/" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center whitespace-nowrap relative text-sm py-2">Área do Cliente</a>
             <details className="mt-2 text-[11px] text-neutral-500 dark:text-brand-light/40 leading-relaxed select-none">
               <summary className="cursor-pointer list-none marker:hidden flex items-center gap-1 text-neutral-500 dark:text-brand-light/50 hover:text-neutral-700 dark:hover:text-brand-light/70 transition-colors">
@@ -87,7 +94,7 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
-      {/* Modal de indicação removido - movido para seção Indique e Ganhe */}
+      
       {coverageOpen && <CoverageModal open={coverageOpen} onClose={()=>setCoverageOpen(false)} />}
     </section>
   )

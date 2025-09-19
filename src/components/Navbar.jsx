@@ -38,9 +38,24 @@ export default function Navbar({ onOpenFAQ }) {
 
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark')
 
+  // Classes CSS constantes para evitar duplicação
   const headerCls = theme === 'dark'
     ? 'backdrop-blur supports-[backdrop-filter]:bg-black/40 bg-black/60 border-white/10'
     : 'backdrop-blur border-transparent bg-transparent'
+    
+  const linkCls = theme === 'dark'
+    ? 'text-sm font-medium text-brand-light/80 link-hover'
+    : 'text-sm font-medium text-neutral-800 link-hover'
+    
+  const mobileLinkCls = theme === 'dark'
+    ? 'text-base font-medium text-brand-light/90 link-hover'
+    : 'text-base font-medium text-neutral-800 link-hover'
+    
+  const themeButtonCls = `w-9 h-9 inline-flex items-center justify-center rounded-md border transition-colors ${
+    theme === 'dark'
+      ? 'border-white/10 hover:border-brand-lime text-brand-light/80 hover:text-brand-lime'
+      : 'border-black/10 hover:border-brand-blue text-brand-blue hover:text-brand-blue/80'
+  }`
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 border-b ${headerCls}`}>
@@ -54,11 +69,7 @@ export default function Navbar({ onOpenFAQ }) {
             <a
               key={l.href}
               href={l.href}
-              className={
-                theme === 'dark'
-                  ? 'text-sm font-medium text-brand-light/80 link-hover'
-                  : 'text-sm font-medium text-neutral-800 link-hover'
-              }
+              className={linkCls}
             >
               {l.label}
             </a>
@@ -67,11 +78,7 @@ export default function Navbar({ onOpenFAQ }) {
             href="https://sistema.net7.com.br/central-assinante/"
             target="_blank"
             rel="noopener noreferrer"
-            className={
-              theme === 'dark'
-                ? 'text-sm font-medium text-brand-light/80 link-hover'
-                : 'text-sm font-medium text-neutral-800 link-hover'
-            }
+            className={linkCls}
           >
             Área do Cliente
           </a>
@@ -79,7 +86,7 @@ export default function Navbar({ onOpenFAQ }) {
           <button
             type="button"
             onClick={onOpenFAQ}
-            className={theme==='dark' ? 'text-sm font-medium text-brand-light/80 link-hover' : 'text-sm font-medium text-neutral-800 link-hover'}
+            className={linkCls}
           >FAQ</button>
           {/* Instagram Icon */}
           <a
@@ -112,17 +119,13 @@ export default function Navbar({ onOpenFAQ }) {
           <button
             onClick={toggleTheme}
             aria-label="Alternar tema"
-            className={`w-9 h-9 inline-flex items-center justify-center rounded-md border transition-colors ${
-              theme === 'dark'
-                ? 'border-white/10 hover:border-brand-lime text-brand-light/80 hover:text-brand-lime'
-                : 'border-black/10 hover:border-brand-blue text-brand-blue hover:text-brand-blue/80'
-            }`}
+            className={themeButtonCls}
           >
             {theme === 'dark' ? '🌙' : '☀️'}
           </button>
         </div>
         <div className="md:hidden flex items-center gap-2">
-          <button onClick={toggleTheme} aria-label="Alternar tema" className={`w-9 h-9 inline-flex items-center justify-center rounded-md border transition-colors ${theme==='dark' ? 'border-white/10 hover:border-brand-lime text-brand-light/80 hover:text-brand-lime' : 'border-black/10 hover:border-brand-blue text-brand-blue hover:text-brand-blue/80'}`}>
+          <button onClick={toggleTheme} aria-label="Alternar tema" className={themeButtonCls}>
             {theme === 'dark' ? '🌙' : '☀️'}
           </button>
           <button aria-label="Abrir menu" aria-expanded={open} onClick={() => setOpen(o=>!o)} className={`p-2 rounded-md border transition-colors ${theme==='dark' ? 'border-white/10 text-brand-light/80 hover:text-brand-lime hover:border-brand-lime' : 'border-black/10 text-neutral-600 hover:text-brand-blue hover:border-brand-blue'}` }>
@@ -136,7 +139,7 @@ export default function Navbar({ onOpenFAQ }) {
         <div className={`md:hidden backdrop-blur border-t ${theme==='dark' ? 'bg-black/90 border-white/10' : 'bg-white/95 border-black/10'}`}>
           <div className="container-section flex flex-col py-4 gap-4">
             {navLinks.map(l => (
-              <a key={l.href} href={l.href} onClick={()=>setOpen(false)} className={theme==='dark' ? 'text-base font-medium text-brand-light/90 link-hover' : 'text-base font-medium text-neutral-800 link-hover'}>
+              <a key={l.href} href={l.href} onClick={()=>setOpen(false)} className={mobileLinkCls}>
                 {l.label}
               </a>
             ))}
@@ -145,12 +148,12 @@ export default function Navbar({ onOpenFAQ }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={()=>setOpen(false)}
-              className={theme==='dark' ? 'text-base font-medium text-brand-light/90 link-hover' : 'text-base font-medium text-neutral-800 link-hover'}
+              className={mobileLinkCls}
             >
               Área do Cliente
             </a>
             <InstallPWAButton className="self-start" />
-            <button onClick={()=>{ setOpen(false); onOpenFAQ?.() }} className={theme==='dark' ? 'text-base font-medium text-brand-light/90 link-hover text-left' : 'text-base font-medium text-neutral-800 link-hover text-left'}>
+            <button onClick={()=>{ setOpen(false); onOpenFAQ?.() }} className={`${mobileLinkCls} text-left`}>
               FAQ
             </button>
             <div className={`pt-3 mt-2 border-t flex items-center gap-4 ${theme==='dark' ? 'border-white/10' : 'border-black/10'}`}>
