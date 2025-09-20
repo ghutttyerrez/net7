@@ -1,4 +1,4 @@
-# Net7 • Landing / PWA
+# Net7 • Landing Page
 
 <div align="center">
   <p>SPA moderna para provedor de internet (fibra) com foco em conversão, indicação, compliance legal, acessibilidade e performance.</p>
@@ -6,7 +6,6 @@
   ![React](https://img.shields.io/badge/React-19.1.1-blue?logo=react)
   ![Vite](https://img.shields.io/badge/Vite-7.1.2-purple?logo=vite)
   ![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4.10-blue?logo=tailwindcss)
-  ![PWA](https://img.shields.io/badge/PWA-Ready-green)
   ![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)
 </div>
 
@@ -225,12 +224,6 @@ Configure Google Analytics em `src/utils/analytics.js`:
 const GA_ID = 'G-XXXXXXXXXX'
 ```
 
-### 4. PWA - Service Worker
-Já configurado! Verifique se está funcionando:
-- ✅ Ícones PWA em `public/icons/`
-- ✅ Manifesto em `public/manifest.json`
-- ✅ Service Worker em `public/sw.js`
-
 ---
 
 ## 🎨 Personalização
@@ -264,13 +257,6 @@ Substitua as imagens em `public/`:
 - **FAQ:** Edite `FAQModal.jsx`
 - **Informações legais:** Edite arquivos em `src/content/legal/`
 
-### 4. Ícones PWA
-Substitua os ícones em `public/icons/`:
-- `icon-192.png` (192x192)
-- `icon-512.png` (512x512)
-- `icon-512-maskable.png` (512x512 com padding)
-- `icon-180.png` (Apple touch icon)
-
 ---
 
 ## 🔧 Manutenção
@@ -302,8 +288,6 @@ Mantenha backup dos seguintes arquivos personalizados:
 - `src/config/whatsapp.js`
 - `src/content/legal/*.json`
 - `public/hero-fibra.*`
-- `public/icons/*`
-- `public/manifest.json`
 
 ---
 
@@ -330,7 +314,6 @@ npm run preview
 - Accessibility: >95
 - Best Practices: >90
 - SEO: >90
-- PWA: ✅ Installable
 
 ### 3. Uptime Monitoring
 Configure monitores gratuitos:
@@ -351,12 +334,6 @@ npm install
 # Verificar versão do Node
 node --version  # Deve ser 18+
 ```
-
-### PWA Não Instala
-1. Verifique se está em HTTPS
-2. Confirme que `manifest.json` está acessível
-3. Teste em modo incógnito
-4. Verifique console por erros do Service Worker
 
 ### Performance Baixa
 1. **Imagens:** Use formato WebP/AVIF
@@ -381,7 +358,6 @@ node --version  # Deve ser 18+
 ### Stack Tecnológico
 - **Frontend:** React 19.1.1 + Vite 7.1.2
 - **Styling:** Tailwind CSS 3.4.10
-- **PWA:** Service Worker nativo
 - **PDF:** jsPDF 2.5.2 (lazy loaded)
 - **Build:** Vite com otimizações automáticas
 
@@ -391,19 +367,12 @@ public/
 ├── hero-fibra.avif          # Imagem principal (formato moderno)
 ├── hero-fibra.webp          # Fallback WebP
 ├── hero-fibra.jpg           # Fallback JPG
-├── manifest.json            # Manifesto PWA
-├── sw.js                    # Service Worker
 ├── robots.txt               # SEO
 ├── sitemap.xml              # SEO
-└── icons/                   # Ícones PWA
-    ├── icon-180.png
-    ├── icon-192.png
-    ├── icon-512.png
-    └── icon-512-maskable.png
 
 src/
 ├── App.jsx                  # Componente principal
-├── main.jsx                 # Entry point + SW registration
+├── main.jsx                 # Entry point
 ├── index.css                # Estilos globais
 ├── components/              # Componentes reutilizáveis
 │   ├── Hero.jsx             # Seção principal com carousel
@@ -436,12 +405,10 @@ src/
 | `ContactSection` | Formulário de contato e informações |
 | `ReferralSection` | Sistema de indicação com integração WhatsApp |
 | `FAQModal` | Perguntas frequentes com busca |
-| `InstallPWAButton` | Botão de instalação PWA |
 
 ### Features Implementadas
 - ✅ **Tema Dark/Light** com persistência
 - ✅ **Internacionalização** (pt-BR/en-US)
-- ✅ **PWA** com Service Worker
 - ✅ **Carousel responsivo** com detecção de tema
 - ✅ **Sistema de indicação** com WhatsApp
 - ✅ **Consentimento de cookies** (LGPD)
