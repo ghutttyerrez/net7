@@ -35,7 +35,7 @@ export default function MinhaNet7Section() {
               </svg>
             </div>
             <div className={textContainerClass}>
-              <p className={subtitleClass}>Baixar na</p>
+              <p className={subtitleClass}>Disponível na</p>
               <p className={titleClass}>App Store</p>
             </div>
           </a>
