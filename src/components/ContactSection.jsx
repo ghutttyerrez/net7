@@ -61,7 +61,7 @@ export default function ContactSection() {
               <div className={cardContentClass}>
               <h3 className={cardTitleClass}>Atendimento rápido</h3>
               <p className={cardTextClass}>Fale direto com nosso time via WhatsApp e acelere sua contratação.</p>
-              <a href={WHATSAPP_BASE_URL} target="_blank" onClick={()=>trackEvent('quick_whatsapp_click')} className="btn-outline justify-center relative">WhatsApp</a>
+              <a href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent('Olá! Quero conhecer os planos da Net7. Poderiam me falar sobre eles e me ajudar a escolher o melhor para minhas necessidades?')}`} target="_blank" rel="noopener noreferrer" onClick={()=>trackEvent('quick_whatsapp_click')} className="btn-outline justify-center relative">WhatsApp</a>
               </div>
             </div>
             <div className={cardBaseClass}>

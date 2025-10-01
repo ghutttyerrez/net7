@@ -1,4 +1,14 @@
+import { WHATSAPP_BASE_URL } from '../config/whatsapp'
+
 export function PlanCard({ name, speed, features, highlight = false, revealDelay }) {
+  // Criar mensagem específica para cada plano
+  const getWhatsAppMessage = () => {
+    const speedNumber = speed.replace(' Mega', 'mb')
+    return `Olá! Quero contratar o plano de ${speedNumber} da Net7. Poderia me fornecer mais informações sobre valores e disponibilidade na minha região?`
+  }
+
+  const whatsappUrl = `${WHATSAPP_BASE_URL}?text=${encodeURIComponent(getWhatsAppMessage())}`
+
   return (
     <div data-reveal data-reveal-delay={revealDelay} className={`card-plan ${highlight ? 'ring-1 ring-brand-blue dark:ring-brand-lime shadow-[0_0_0_1px_rgba(37,99,235,0.35)] dark:shadow-[0_0_0_1px_rgba(173,204,5,0.35)]' : ''}`}>
       {highlight && (
@@ -21,7 +31,14 @@ export function PlanCard({ name, speed, features, highlight = false, revealDelay
         ))}
       </ul>
       <div className="mt-8">
-        <a href="#contato" className="btn-primary w-full justify-center">Assinar</a>
+        <a 
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary w-full justify-center"
+        >
+          Assinar
+        </a>
       </div>
     </div>
   )

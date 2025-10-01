@@ -50,10 +50,8 @@ export default function Navbar({ onOpenFAQ }) {
     }`}>
       <div className="container-section flex items-center justify-between py-4">
         {/* Logo */}
-        <a href="#hero" className="text-2xl font-bold text-brand-blue dark:text-brand-lime">
-          <span className="bg-gradient-to-r from-brand-blue to-brand-blue/80 dark:from-brand-lime dark:to-brand-lime/80 bg-clip-text text-transparent">
-            Net7
-          </span>
+        <a href="#hero" className="flex items-center gap-2 font-semibold text-brand-blue dark:text-brand-lime text-2xl">
+          <span className="inline-block w-2 h-6 bg-gradient-to-b from-brand-blue to-brand-lime dark:from-brand-lime dark:to-brand-blue rounded-sm" /> Net7
         </a>
 
         {/* Desktop Navigation */}
@@ -68,7 +66,7 @@ export default function Navbar({ onOpenFAQ }) {
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="https://cliente.net7.com.br"
+            href="https://sistema.net7.com.br/central-assinante/"
             target="_blank"
             rel="noopener noreferrer"
             className={linkCls}
