@@ -39,11 +39,11 @@ export default function Hero() {
   const slideContent = [
     {
       title: 'Internet Fibra Ultraveloz',
-      subtitle: 'Conecte sua casa e seu negócio com estabilidade, baixa latência e suporte humano de verdade. A Net7 entrega performance real.'
+      subtitle: 'Conecte sua casa e seu negócio com estabilidade, baixa latência e suporte humano de verdade.'
     },
     {
       title: 'Conexão Estável e Confiável',
-      subtitle: 'Tecnologia de ponta que garante estabilidade 24/7. Sua internet sempre funcionando quando você mais precisa.'
+      subtitle: 'Sua internet sempre funcionando quando você mais precisa.'
     },
     {
       title: '',
@@ -111,7 +111,7 @@ export default function Hero() {
   }, [imageConfig.length])
 
   return (
-    <section id="hero" className="relative pt-20 pb-16 overflow-hidden min-h-[60vh] sm:min-h-[75vh]">
+  <section id="hero" className="relative pt-20 pb-14 overflow-hidden h-[62vh] sm:h-[65vh] max-[600px]:pt-24 max-[600px]:pb-10 min-[571px]:max-[799px]:pt-24">
       {/* Container otimizado para imagens responsivas */}
       <div className="absolute inset-0 z-0">
         {imageConfig.map((config, index) => {
@@ -137,14 +137,16 @@ export default function Hero() {
                 <img
                   src={config.desktop[theme]}
                   alt={config.alt}
-                  className={`w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                  className={`w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
                     isActive ? 'opacity-100' : 'opacity-0'
                   }`}
                   style={{
                     zIndex: isActive ? 10 : 5,
                     imageRendering: 'high-quality',
                     WebkitBackfaceVisibility: 'hidden',
-                    backfaceVisibility: 'hidden'
+                    backfaceVisibility: 'hidden',
+                    minHeight: '100%',
+                    maxHeight: '100%'
                   }}
                   loading={index === 0 ? "eager" : "lazy"}
                   decoding="async"
@@ -168,8 +170,8 @@ export default function Hero() {
       {/* Overlay para tema escuro */}
       <div className="absolute inset-0 z-20 bg-black/35 hidden dark:block" />
 
-      <div className="container-section text-center relative z-30 flex flex-col items-center justify-center min-h-[40vh]">
-        <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-center transition-all duration-1000 ${
+  <div className="container-section text-center relative z-30 flex flex-col items-center justify-center h-full pb-16 sm:pb-20 max-[600px]:pb-16">
+        <h1 className={`text-4xl sm:text-5xl lg:text-6xl max-[600px]:text-2xl max-[600px]:leading-tight max-[600px]:mt-2 min-[571px]:max-[799px]:text-4xl min-[571px]:max-[799px]:leading-snug font-bold tracking-tight text-center transition-all duration-1000 ${
           currentImageIndex === 2 ? 'opacity-0 transform translate-y-4' : 'opacity-100 transform translate-y-0'
         }`}>
           <span className="text-gradient-invert-light">
@@ -180,20 +182,20 @@ export default function Hero() {
           </span>
         </h1>
         
-        <p className={`mt-6 max-w-2xl mx-auto text-lg text-neutral-600 dark:text-brand-light/80 text-center transition-all duration-1000 ${
+        <p className={`mt-6 max-w-2xl mx-auto text-lg max-[600px]:text-base max-[600px]:mt-5 min-[571px]:max-[799px]:text-base text-neutral-600 dark:text-brand-light/80 text-center transition-all duration-1000 ${
           currentImageIndex === 2 ? 'opacity-0 transform translate-y-4' : 'opacity-100 transform translate-y-0'
         }`}>
           {slideContent[currentImageIndex]?.subtitle || 'Conecte sua casa e seu negócio com estabilidade, baixa latência e suporte humano de verdade. A Net7 entrega performance real.'}
         </p>
         
-        <div className={`mt-10 flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto sm:max-w-none transition-all duration-1000 ${
+        <div className={`mt-10 max-[600px]:mt-6 min-[571px]:max-[799px]:mt-8 flex flex-col sm:flex-row gap-4 max-[600px]:gap-3 min-[571px]:max-[799px]:gap-3 justify-center w-full max-w-md mx-auto sm:max-w-none transition-all duration-1000 ${
           currentImageIndex === 2 ? 'opacity-0 transform translate-y-4' : 'opacity-100 transform translate-y-0'
         }`}>
-          <a href="#planos" className="btn-primary w-full sm:w-auto">Ver Planos</a>
-          <a href="#contato" className="btn-outline w-full sm:w-auto">Fale Conosco</a>
+          <a href="#planos" className="btn-primary w-full sm:w-auto max-[600px]:px-5 max-[600px]:py-2.5 max-[600px]:text-sm min-[571px]:max-[799px]:px-5 min-[571px]:max-[799px]:py-2.5 min-[571px]:max-[799px]:text-sm">Ver Planos</a>
+          <a href="#contato" className="btn-outline w-full sm:w-auto max-[600px]:px-5 max-[600px]:py-2.5 max-[600px]:text-sm min-[571px]:max-[799px]:px-5 min-[571px]:max-[799px]:py-2.5 min-[571px]:max-[799px]:text-sm">Fale Conosco</a>
         </div>
         
-        <div className="mt-8 flex justify-center gap-2">
+  <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex justify-center gap-2 z-30">
           {imageConfig.map((_, index) => (
             <button
               key={index}

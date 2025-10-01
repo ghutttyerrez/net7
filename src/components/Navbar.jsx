@@ -37,20 +37,16 @@ export default function Navbar({ onOpenFAQ }) {
 
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark')
 
-  // Classes CSS reutilizáveis
-  const linkCls = "text-sm font-medium hover:text-brand-blue dark:hover:text-brand-lime transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue dark:focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black rounded-md px-2 py-1"
-  const mobileLinkCls = "text-base font-medium hover:text-brand-blue dark:hover:text-brand-lime transition-colors py-2 border-b border-transparent hover:border-brand-blue dark:hover:border-brand-lime focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue dark:focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black rounded-md"
-  const themeButtonCls = "p-2.5 rounded-lg border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-md hover:border-brand-blue dark:hover:border-brand-lime transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue dark:focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black shadow-sm hover:shadow"
+  // Classes CSS reutilizáveis (navbar segue padrão escuro da marca)
+  const linkCls = "text-sm font-medium text-brand-light/90 hover:text-brand-lime transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md px-2 py-1"
+  const mobileLinkCls = "text-base font-medium text-brand-light/90 hover:text-brand-lime transition-colors py-2 border-b border-transparent hover:border-brand-lime focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md"
+  const themeButtonCls = "p-2.5 rounded-lg border border-white/10 bg-white/5 backdrop-blur-md hover:border-brand-lime transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-sm hover:shadow"
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      theme === 'light' 
-        ? 'bg-white/95 backdrop-blur-md border-b border-black/10' 
-        : 'bg-black/95 backdrop-blur-md border-b border-white/10'
-    }`}>
-      <div className="container-section flex items-center justify-between py-4">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black/95 text-brand-light border-b border-white/10 backdrop-blur-md`}>
+  <div className="container-section flex items-center justify-between py-3.5 max-[600px]:py-3 min-[571px]:max-[799px]:py-3">
         {/* Logo */}
-        <a href="#hero" className="flex items-center gap-2 font-semibold text-brand-blue dark:text-brand-lime text-2xl">
+  <a href="#hero" className="flex items-center gap-2 font-semibold text-brand-lime text-2xl min-[571px]:max-[799px]:text-xl">
           <span className="inline-block w-2 h-6 bg-gradient-to-b from-brand-blue to-brand-lime dark:from-brand-lime dark:to-brand-blue rounded-sm" /> Net7
         </a>
 
@@ -136,7 +132,7 @@ export default function Navbar({ onOpenFAQ }) {
 
       {/* Mobile Menu */}
       {open && (
-        <div className={`md:hidden backdrop-blur border-t ${theme==='dark' ? 'bg-black/90 border-white/10' : 'bg-white/95 border-black/10'}`}>
+        <div className={`md:hidden backdrop-blur border-t bg-black/92 border-white/10`}>
           <div className="container-section flex flex-col py-4 gap-4">
             {navLinks.map(l => (
               <a key={l.href} href={l.href} onClick={()=>setOpen(false)} className={mobileLinkCls}>
@@ -155,13 +151,13 @@ export default function Navbar({ onOpenFAQ }) {
             <button onClick={()=>{ setOpen(false); onOpenFAQ?.() }} className={`${mobileLinkCls} text-left`}>
               FAQ
             </button>
-            <div className={`pt-3 mt-2 border-t flex items-center gap-4 ${theme==='dark' ? 'border-white/10' : 'border-black/10'}`}>
+            <div className={`pt-3 mt-2 border-t flex items-center gap-4 border-white/10`}>
               {/* Instagram Icon */}
               <a
                 href="https://instagram.com/net7tecnologia"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 hover:text-brand-blue dark:hover:text-brand-lime transition-colors"
+                className="p-2 text-brand-light/90 hover:text-brand-lime transition-colors"
                 aria-label="Siga-nos no Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -173,7 +169,7 @@ export default function Navbar({ onOpenFAQ }) {
                 href="https://wa.me/5567999999999?text=Olá! Gostaria de saber mais sobre os planos de internet da Net7."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 hover:text-brand-blue dark:hover:text-brand-lime transition-colors"
+                className="p-2 text-brand-light/90 hover:text-brand-lime transition-colors"
                 aria-label="Entre em contato via WhatsApp"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -184,7 +180,7 @@ export default function Navbar({ onOpenFAQ }) {
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="p-2 hover:text-brand-blue dark:hover:text-brand-lime transition-colors"
+                className="p-2 text-brand-light/90 hover:text-brand-lime transition-colors"
                 aria-label={theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'}
               >
                 {theme === 'dark' ? (
