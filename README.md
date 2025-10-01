@@ -20,6 +20,8 @@
 8. [📊 Monitoramento](#-monitoramento)
 9. [🚨 Solução de Problemas](#-solução-de-problemas)
 10. [📚 Documentação Técnica](#-documentação-técnica)
+11. [🖼️ Como adicionar imagens no header (Hero)](#%EF%B8%8F-como-adicionar-imagens-no-header-hero)
+12. [📞 Como trocar o número de WhatsApp/telefone](#-como-trocar-o-número-de-whatsappptelefone)
 
 ---
 
@@ -209,13 +211,21 @@ VITE_API_BASE_URL=https://api.seudominio.com.br
 ```
 
 ### 2. Configuração do WhatsApp
-1. **Número de WhatsApp Business:** Configure em `src/config/whatsapp.js`
-   ```javascript
-   export const WHATSAPP_CONFIG = {
-     number: '5511999999999', // Seu número com código do país
-     baseMessage: 'Olá! Gostaria de saber mais sobre os planos de internet.'
-   }
-   ```
+O site usa um ponto único de configuração:
+
+- Arquivo: `src/config/whatsapp.js`
+- Exemplo:
+  ```js
+  // Manter apenas dígitos: DDI + DDD + número
+  export const WHATSAPP_NUMBER = '5567993259746'
+  export const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
+  ```
+
+Onde é usado:
+- Botões de contato (seções Contato, Planos, Cobertura, Horários de Suporte)
+- Navbar (ícone do WhatsApp)
+
+Observação: por padrão não usamos variável de ambiente para o número; a alteração é feita diretamente nesse arquivo para simplificar a operação.
 
 ### 3. Analytics
 Configure Google Analytics em `src/utils/analytics.js`:
@@ -246,11 +256,32 @@ module.exports = {
 ```
 
 ### 2. Imagens
-Substitua as imagens em `public/`:
-- `hero-fibra.avif` - Imagem principal do hero
-- `hero-fibra.webp` - Fallback WebP
-- `hero-fibra.jpg` - Fallback JPG
-- `favicon.png` - Favicon do site
+Substitua as imagens do header (Hero) na pasta `public/`. Existem versões para tema claro/escuro e para cada breakpoint (mobile/tablet/desktop):
+
+- hero-speed-desktop.webp
+- hero-speed-desktop-dark.webp
+- hero-speed-tablet.webp
+- hero-speed-tablet-dark.webp
+- hero-speed-mobile.webp
+- hero-speed-mobile-dark.webp
+
+- hero-fibra-desktop.webp
+- hero-fibra-desktop-dark.webp
+- hero-fibra-tablet.webp
+- hero-fibra-tablet-dark.webp
+- hero-fibra-mobile.webp
+- hero-fibra-mobile-dark.webp
+
+- hero-connection-desktop.webp
+- hero-connection-desktop-dark.webp
+- hero-connection-tablet.webp
+- hero-connection-tablet-dark.webp
+- hero-connection-mobile.webp
+- hero-connection-mobile-dark.webp
+
+Outros arquivos:
+- `favicon.png` – ícone do site
+- `robots.txt` e `sitemap.xml` – SEO
 
 ### 3. Conteúdo
 - **Planos:** Edite `PlansSection.jsx`
@@ -364,11 +395,27 @@ node --version  # Deve ser 18+
 ### Estrutura de Arquivos
 ```
 public/
-├── hero-fibra.avif          # Imagem principal (formato moderno)
-├── hero-fibra.webp          # Fallback WebP
-├── hero-fibra.jpg           # Fallback JPG
-├── robots.txt               # SEO
-├── sitemap.xml              # SEO
+├── hero-speed-desktop.webp
+├── hero-speed-desktop-dark.webp
+├── hero-speed-tablet.webp
+├── hero-speed-tablet-dark.webp
+├── hero-speed-mobile.webp
+├── hero-speed-mobile-dark.webp
+├── hero-fibra-desktop.webp
+├── hero-fibra-desktop-dark.webp
+├── hero-fibra-tablet.webp
+├── hero-fibra-tablet-dark.webp
+├── hero-fibra-mobile.webp
+├── hero-fibra-mobile-dark.webp
+├── hero-connection-desktop.webp
+├── hero-connection-desktop-dark.webp
+├── hero-connection-tablet.webp
+├── hero-connection-tablet-dark.webp
+├── hero-connection-mobile.webp
+├── hero-connection-mobile-dark.webp
+├── favicon.png
+├── robots.txt
+├── sitemap.xml
 
 src/
 ├── App.jsx                  # Componente principal
@@ -450,6 +497,57 @@ src/
 
 ---
 
+## 🖼️ Como adicionar imagens no header (Hero)
+
+O componente `Hero.jsx` usa um carousel com 3 slides e detecção automática de tema (claro/escuro). As imagens são definidas em dois lugares:
+
+- Arquivos: pasta `public/` (listadas na seção Personalização)
+- Código: `src/components/Hero.jsx` na constante `imageConfig` (imagens) e `slideContent` (títulos/subtítulos)
+
+Passo a passo para substituir imagens mantendo os 3 slides existentes:
+1. Prepare suas imagens nos tamanhos aproximados:
+  - Desktop: 1920×1080 (ou maior), qualidade alta
+  - Tablet: 1280×800
+  - Mobile: 750×1334 (ou 1080×1920 se retrato)
+2. Exporte nos pares claro/escuro em formato `.webp` (recomendado)
+3. Substitua os arquivos correspondentes na pasta `public/` usando exatamente os mesmos nomes
+4. Opcional: ajuste os textos em `slideContent` dentro de `Hero.jsx`
+
+Para adicionar um novo slide (4º, por exemplo):
+1. Crie 6 arquivos (desktop/tablet/mobile × light/dark) e coloque em `public/`
+2. Em `Hero.jsx`, adicione um novo objeto ao array `imageConfig` com os caminhos dos arquivos
+3. Adicione o título/subtítulo correspondente em `slideContent` na mesma posição
+4. Teste localmente (`npm run dev`) verificando transições e responsividade
+
+Dicas:
+- Mantenha a composição com foco central para evitar cortes em telas muito estreitas
+- Comprima as imagens `.webp` visando <400 KB por arquivo para ótimo LCP
+- Preencha o atributo `alt` de cada slide para acessibilidade
+
+---
+
+## 📞 Como trocar o número de WhatsApp/telefone
+
+O número oficial do WhatsApp é centralizado em `src/config/whatsapp.js`:
+
+```js
+export const WHATSAPP_NUMBER = '5567993259746' // Exemplo: 55 + DDD + número
+export const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
+```
+
+Como alterar:
+1. Edite `WHATSAPP_NUMBER` mantendo apenas dígitos (ex.: `5511999999999`)
+2. Salve o arquivo — todos os botões que usam WhatsApp passarão a apontar para o novo número
+3. Verifique as seções: Navbar, Planos, Contato, Cobertura e Horários de Suporte
+
+Validação rápida:
+- Inicie o projeto (`npm run dev`) e clique nos botões de WhatsApp
+- Verifique se a URL abre como `https://wa.me/SEUNUMERO?text=...`
+
+Observação: em alguns lugares a mensagem é personalizada (ex.: “quero contratar o plano…”) — isso é normal e não precisa de ajustes ao trocar o número.
+
+---
+
 ## 🎯 Próximos Passos
 
 ### Imediatos
@@ -481,13 +579,13 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 ## 🤝 Suporte
 
 - **Email:** desenvolvimento@net7.com.br
-- **WhatsApp:** +55 11 99999-9999
+- **WhatsApp:** +55 (67) 99325-9746
 - **Documentação:** Este README
 - **Issues:** GitHub Issues
 
 ---
 
-**Última atualização:** 19 de setembro de 2025
+**Última atualização:** 30 de setembro de 2025
 **Versão:** 2.0.0
 
 © Net7 - 2025 • Todos os direitos reservados

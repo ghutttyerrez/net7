@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { WHATSAPP_BASE_URL } from '../config/whatsapp'
 
 const navLinks = [
   { href: '#hero', label: 'Início' },
@@ -88,7 +89,7 @@ export default function Navbar({ onOpenFAQ }) {
           </a>
           {/* WhatsApp Icon */}
           <a
-            href="https://wa.me/5567999999999?text=Olá! Gostaria de saber mais sobre os planos de internet da Net7."
+            href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent('Olá! Gostaria de saber mais sobre os planos de internet da Net7.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className={linkCls}
@@ -166,7 +167,7 @@ export default function Navbar({ onOpenFAQ }) {
               </a>
               {/* WhatsApp Icon */}
               <a
-                href="https://wa.me/5567999999999?text=Olá! Gostaria de saber mais sobre os planos de internet da Net7."
+                href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent('Olá! Gostaria de saber mais sobre os planos de internet da Net7.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 text-brand-light/90 hover:text-brand-lime transition-colors"
