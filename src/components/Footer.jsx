@@ -31,8 +31,11 @@ export default function Footer({ onOpenFAQ }) {
     trackEvent('footer_status_refresh')
     setLoadingStatus(true)
     setTimeout(() => {
-      // Randomly simulate a minor degradation 1 in 12 refreshes
-      const degraded = Math.random() < (1/12)
+      // Randomly simulate a minor degradation ~1 in 12 refreshes (using Web Crypto when available)
+      const rnd = (typeof crypto !== 'undefined' && crypto.getRandomValues)
+        ? (crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296)
+        : Math.random()
+      const degraded = rnd < (1/12)
       const next = { state: degraded ? 'degraded' : 'operational', updated: Date.now() }
       setStatus(next)
       setHistory(h => {
@@ -110,9 +113,17 @@ export default function Footer({ onOpenFAQ }) {
         <div className="grid gap-10 md:gap-12 md:grid-cols-5">
           {/* Coluna Marca */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 font-semibold text-brand-blue dark:text-brand-lime text-lg">
-              <span className="inline-block w-2 h-6 bg-gradient-to-b from-brand-blue to-brand-lime dark:from-brand-lime dark:to-brand-blue rounded-sm" /> Net7
-            </div>
+            <a href="#hero" aria-label="Net7" className="flex items-center gap-2 group text-brand-light/90 hover:text-brand-lime transition-colors w-fit">
+              {/* Barra vertical com gradiente (vertical) */}
+              <span className="inline-block w-2 h-6 rounded-sm bg-gradient-to-b from-brand-lime to-brand-blue group-hover:from-brand-lime group-hover:to-brand-lime transition-colors" />
+              {/* Imagem SVG como logo */}
+              <img
+                src="/net7-logo.svg"
+                alt="Net7"
+                className="h-6 sm:h-7 w-auto select-none"
+                draggable="false"
+              />
+            </a>
             <p className="text-neutral-600 dark:text-brand-light/60 leading-relaxed text-sm">Conectando pessoas e negócios com fibra de alta performance, baixíssima latência e suporte que resolve.</p>
             <div className="flex gap-3 pt-2">
               <a href="https://www.instagram.com/net7tecnologia/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" onClick={()=>trackEvent('footer_social_instagram')} className="w-9 h-9 inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/10 text-neutral-600 dark:text-brand-light/70 hover:text-brand-blue hover:border-brand-blue dark:hover:text-brand-lime dark:hover:border-brand-lime transition-colors">
